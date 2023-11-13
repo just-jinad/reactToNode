@@ -1,10 +1,50 @@
-import React from 'react'
+import { useDispatch, useSelector } from "react-redux"
+import { decrement, increment } from "../redux/Counter";
+import { useEffect, useRef } from "react";
+
 
 const Home = () => {
+  const count = useSelector((state) => state.counter.count);
+  const dispatch = useDispatch()
+
+  const age = useRef(10)
+  useEffect(()=>{
+    console.log(age.current);
+
+  })
+
+  const checkRef=()=>{
+  console.log(age.current.outterHTML);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
+
+    <h3 ref={age}>Jinad</h3>
+    <button onClick={checkRef}>OnChange</button>
+
+    <div>
+
+      <div>{count}</div>
+
+      <button onClick={()=>dispatch(increment())}>Increment</button>
+      <button onClick={()=>dispatch(decrement())}>decrement</button>
+    </div>
         <div className='cor'>
-    <div id="carouselExample" class="carousel slide">
+    <div id="carouselExample" className="carousel slide">
   <div className="carousel-inner">
     <div className="carousel-item active">
       <img src="https://img.freepik.com/free-photo/group-five-african-college-students-spending-time-together-campus-university-yard-black-afro-friends-studying-education-theme_627829-6007.jpg?size=626&ext=jpg&ga=GA1.1.930197615.1698227208&semt=sph" className="d-block w-100" alt="..."/>

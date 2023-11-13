@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { toast } from "react-toastify";
 
 
 
 const SignUp = () => {
+let navigate = useNavigate()
  
   const [firstname, setfirstName] = useState("");
   const [lastname, setLastname] = useState("");
@@ -17,7 +19,16 @@ const SignUp = () => {
     axios.post(url, { firstname, lastname, email, password })
     .then((res)=>{
       console.log(res);
-      toast(res.data.message)
+      if (res.data.status == true) {
+        toast(res.data.message)
+        setTimeout(() => {
+          navigate("/login")
+        }, 3000);
+        
+      }else{
+        toast(res.data.message)
+      }
+     
         
     }).catch((err)=>{
       console.log(err);

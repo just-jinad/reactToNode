@@ -8,12 +8,36 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './component/Login'
 import  Formik from './component/Formik'
+import { useEffect } from 'react'
+
 
 function App() {
 
-
+  useEffect(() => {
+  if ('ServiceWorker' in navigator) {
+    window.addEventListener('load', ()=>{
+      navigator.serviceWorker.register('/sw.js')
+      .then(registration=>{
+        console.log('SW registered:', registration);
+      })
+      .catch(registrationError =>{
+        console.log('SW registration Failed:', registrationError);
+      })
+    })
+  }
+  
+ 
+  }, [])
+  
   return (
     <>
+
+  
+    
+
+
+
+
     <ToastContainer
 position="top-center"
 autoClose={5000}
